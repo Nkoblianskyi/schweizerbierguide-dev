@@ -1,5 +1,6 @@
 import Link from "next/link"
 import BeerCard, { type Beer } from "./beer-card"
+import MaxAbvHighlight from "./max-abv-highlight"
 
 const populaerBeers: Beer[] = [
   {
@@ -38,6 +39,8 @@ const populaerBeers: Beer[] = [
 ]
 
 export default function PopulaerPreviewSection() {
+  const strongest = [...populaerBeers].sort((a, b) => b.abv - a.abv)[0]
+
   return (
     <section className="py-24 bg-background">
       <div className="max-w-7xl mx-auto px-6">
@@ -56,6 +59,16 @@ export default function PopulaerPreviewSection() {
           >
             Alle populären Biere →
           </Link>
+        </div>
+
+        <div className="mb-10 -mx-6 md:mx-0 md:rounded-sm md:overflow-hidden">
+          <MaxAbvHighlight
+            abv={strongest.abv}
+            beerName={strongest.name}
+            brewery={strongest.brewery}
+            showLegal={false}
+            contextLabel="Stärkstes Bier in dieser Vorschau:"
+          />
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">

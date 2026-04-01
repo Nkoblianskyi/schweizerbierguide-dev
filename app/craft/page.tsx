@@ -4,7 +4,7 @@ import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import CookieBanner from "@/components/cookie-banner"
 import AgeDisclaimer from "@/components/age-disclaimer"
-import { Hop } from "lucide-react"
+import MaxAbvHighlight from "@/components/max-abv-highlight"
 
 export const metadata: Metadata = {
   title: "Craft Biere – Schweizer Bier Guide",
@@ -148,16 +148,12 @@ export default function CraftPage() {
 
         <AgeDisclaimer />
 
-        {/* Strongest highlight */}
-        <section className="bg-gold/10 border-b border-gold/20 py-6 px-6">
-          <div className="max-w-7xl mx-auto flex items-center gap-3">
-            <Hop className="w-5 h-5 text-gold flex-shrink-0" />
-            <p className="text-sm font-sans text-foreground/70">
-              <span className="text-gold font-semibold">Stärkstes Bier auf dieser Seite:</span>
-              {" "}{strongest.name} – {strongest.abv.toFixed(1)}% vol. ({strongest.brewery})
-            </p>
-          </div>
-        </section>
+        <MaxAbvHighlight
+          abv={strongest.abv}
+          beerName={strongest.name}
+          brewery={strongest.brewery}
+          contextLabel="Stärkstes Bier auf dieser Seite:"
+        />
 
         {/* Beer list */}
         <section className="py-20 px-6">
